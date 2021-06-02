@@ -1,14 +1,54 @@
-#img {
-  display: block;
-  margin: auto;
-  height: 128px;
-  width: 128px;
-  padding: 2rem;
+:root {
+  --ball-speed: 1s;
+  --ball-size: 50px;
 }
 
-#canvas {
-  display: block;
-  margin: 2rem auto;
-  width: 540px;
-  height: 540px;
+* {
+  box-sizing: border-box;
+}
+
+@keyframes slideRight {
+  from { left: 0 }
+  to { left: calc(100% - var(--ball-size)) }
+}
+
+@keyframes slideLeft {
+  from { left: calc(100% - var(--ball-size)) }
+  to { left: 0 }
+}
+
+body {
+  margin: 0;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+div#ball {
+  height: var(--ball-size);
+  width: var(--ball-size);
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 2;
+}
+
+.slideRight {
+  animation: slideRight var(--ball-speed) both;
+}
+
+.slideLeft {
+  animation: slideLeft var(--ball-speed) both;
 }
