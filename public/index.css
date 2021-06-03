@@ -1,6 +1,10 @@
 :root {
   --ball-speed: 1s;
   --ball-size: 50px;
+  --bar-width: 200px;
+  --bar-height: 40px;
+  --bar-speed: 10s;
+  --bar-left: 20%;
 }
 
 * {
@@ -17,12 +21,43 @@
   to { left: 0 }
 }
 
+@keyframes shrink {
+  0% { width: var(--bar-width) }
+  5% { width: calc(var(--bar-width) * 0.95) }
+  10% { width: calc(var(--bar-width) * 0.9) }
+  15% { width: calc(var(--bar-width) * 0.85) }
+  20% { width: calc(var(--bar-width) * 0.8) }
+  25% { width: calc(var(--bar-width) * 0.75) }
+  30% { width: calc(var(--bar-width) * 0.7) }
+  35% { width: calc(var(--bar-width) * 0.65) }
+  40% { width: calc(var(--bar-width) * 0.6) }
+  45% { width: calc(var(--bar-width) * 0.55) }
+  50% { width: calc(var(--bar-width) * 0.5) }
+  55% { width: calc(var(--bar-width) * 0.45) }
+  60% { width: calc(var(--bar-width) * 0.4) }
+  65% { width: calc(var(--bar-width) * 0.35) }
+  70% { width: calc(var(--bar-width) * 0.3) }
+  75% { width: calc(var(--bar-width) * 0.25) }
+  80% { width: calc(var(--bar-width) * 0.25) }
+  85% { width: calc(var(--bar-width) * 0.25) }
+  90% { width: calc(var(--bar-width) * 0.25) }
+  95% { width: calc(var(--bar-width) * 0.25) }
+  100% { width: calc(var(--bar-width) * 0.25) }
+}
+
 body {
   margin: 0;
   background-color: black;
   display: flex;
   flex-direction: column;
   height: 100vh;
+}
+
+#score {
+  position: absolute;
+  top: 50px;
+  right: 100px;
+  color: white;
 }
 
 main {
@@ -45,10 +80,34 @@ div#ball {
   z-index: 2;
 }
 
+div#area {
+  display: flex;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 1;
+}
+
+div#innerArea {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+div#bar {
+  background-color: green;
+  width: var(--bar-width);
+  height: var(--bar-height);
+  position: absolute;
+  left: var(--bar-left);
+  animation: shrink var(--bar-speed) linear both;
+}
+
 .slideRight {
-  animation: slideRight var(--ball-speed) both;
+  animation: slideRight var(--ball-speed) linear both;
 }
 
 .slideLeft {
-  animation: slideLeft var(--ball-speed) both;
+  animation: slideLeft var(--ball-speed) linear both;
 }
