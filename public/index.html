@@ -9,13 +9,24 @@
     <title>Blacksmith Game</title>
   </head>
   <body>
-    <h1 id="score">Score: 0</h1>
-    <main>
+    <div id="menu">
+      <h1>Blacksmith Game</h1>
+      <button id="start-btn">Start Game</button>
+    </div>
+    <main id="game">
+      <div id="score-area">
+        <h1 id="score">Score: 0</h1>
+      </div>
       <div id="ball"></div>
       <div id="area">
         <div id="bar"></div>
       </div>
     </main>
+    <audio id="hammer">
+      <!-- <source src="hor.ogg" type="audio/ogg"> -->
+      <source src="/hammer.mp3" type="audio/mpeg">
+      Your browser does not support the audio tag.
+    </audio>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <script type="module" src="/dist/index.js"></script>
   </body>

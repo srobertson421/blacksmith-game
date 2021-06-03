@@ -2,8 +2,8 @@
   --ball-speed: 1s;
   --ball-size: 50px;
   --bar-width: 200px;
-  --bar-height: 40px;
-  --bar-speed: 10s;
+  --bar-height: 50px;
+  --bar-speed: 5s;
   --bar-left: 20%;
 }
 
@@ -53,19 +53,33 @@ body {
   height: 100vh;
 }
 
-#score {
-  position: absolute;
-  top: 50px;
-  right: 100px;
+#menu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
   color: white;
 }
 
 main {
-  display: flex;
+  display: none;
   flex-direction: column;
   width: 100%;
   height: 100%;
   position: relative;
+}
+
+#score-area {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 div#ball {
