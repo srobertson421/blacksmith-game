@@ -88,7 +88,7 @@ startBtnEl.addEventListener('click', () => {
       if(strikes === 4) {
         streak++;
         strikes = 0;
-        ballSpeed = (window.innerWidth / gameWidth) - (streak / 10);
+        ballSpeed = (window.innerWidth / gameWidth) - (streak / 20);
         cssVars.style.setProperty('--ball-speed', `${ballSpeed}s`);
       }
     } else {
