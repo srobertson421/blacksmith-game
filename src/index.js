@@ -9,8 +9,10 @@ const cssVars = document.documentElement;
 
 hammerSoundEl.volume = 0.5;
 
-let score = 0;
-let scoreEl = document.getElementById('score');
+let strikes = 0;
+let streak = 0;
+let streakEl = document.getElementById('streak');
+let strikesEl = document.getElementById('strikes');
 
 let gameWidth = window.innerWidth;
 let gameHeight = window.innerHeight;
@@ -55,7 +57,7 @@ function resetBar() {
 let previousTick = 0;
 
 function gameLoop(dTime) {
-  if(dTime > previousTick + 1000) {
+  if(dTime > previousTick + (ballSpeed * 1000)) {
     if(ballEl.classList.contains('slideRight')) {
       ballEl.classList.remove('slideRight');
       ballEl.classList.add('slideLeft');
@@ -76,19 +78,30 @@ startBtnEl.addEventListener('click', () => {
 
   document.body.addEventListener('click', () => {
     const ballPos = ballEl.offsetLeft + (ballSize / 2);
-    const barPosStart = barEl.offsetLeft - 50;
-    const barPosEnd = barEl.offsetLeft + barEl.offsetWidth + 50;
+    const barPosStart = barEl.offsetLeft - ballSize;
+    const barPosEnd = barEl.offsetLeft + barEl.offsetWidth + ballSize;
   
     if(ballPos > barPosStart && ballPos < barPosEnd) {
-      score++;
+      strikes++;
       hammerSoundEl.play();
+
+      if(strikes === 4) {
+        streak++;
+        strikes = 0;
+        ballSpeed = (window.innerWidth / gameWidth) - (streak / 10);
+        cssVars.style.setProperty('--ball-speed', `${ballSpeed}s`);
+      }
     } else {
-      score = 0;
+      strikes = 0;
+      streak = 0;
+      ballSpeed = (window.innerWidth / gameWidth)
+      cssVars.style.setProperty('--ball-speed', `${ballSpeed}s`);
     }
   
     resetBar();
   
-    scoreEl.innerText = `Score: ${score}`;
+    streakEl.innerText = `Streak: ${streak}`;
+    strikesEl.innerText = `Clean strikes: ${strikes}`;
   });
 
   requestAnimationFrame(gameLoop);
